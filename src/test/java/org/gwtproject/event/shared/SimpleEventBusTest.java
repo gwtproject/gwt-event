@@ -74,10 +74,10 @@ public class SimpleEventBusTest extends EventBusTestBase {
     FooEvent.register(eventBus, fooHandler2);
     HandlerRegistration reg1 = FooEvent.register(eventBus, adaptor1);
     eventBus.fireEvent(new FooEvent());
-    assertEquals(3, eventBus.getCount(FooEvent.TYPE));
+    assertEquals(3, eventBus.getHandlerCount(FooEvent.TYPE));
     assertFired(fooHandler1, fooHandler2, adaptor1);
     FooEvent.register(eventBus, fooHandler3);
-    assertEquals(4, eventBus.getCount(FooEvent.TYPE));
+    assertEquals(4, eventBus.getHandlerCount(FooEvent.TYPE));
 
     FooEvent.register(eventBus, fooHandler1);
     FooEvent.register(eventBus, fooHandler2);
@@ -87,13 +87,13 @@ public class SimpleEventBusTest extends EventBusTestBase {
      * You can indeed add handlers twice, they will only be removed one at a
      * time though.
      */
-    assertEquals(7, eventBus.getCount(FooEvent.TYPE));
+    assertEquals(7, eventBus.getHandlerCount(FooEvent.TYPE));
     eventBus.addHandler(BarEvent.TYPE, adaptor1);
     eventBus.addHandler(BarEvent.TYPE, barHandler1);
     eventBus.addHandler(BarEvent.TYPE, barHandler2);
 
-    assertEquals(7, eventBus.getCount(FooEvent.TYPE));
-    assertEquals(3, eventBus.getCount(BarEvent.TYPE));
+    assertEquals(7, eventBus.getHandlerCount(FooEvent.TYPE));
+    assertEquals(3, eventBus.getHandlerCount(BarEvent.TYPE));
 
     reset();
     eventBus.fireEvent(new FooEvent());
@@ -414,38 +414,6 @@ public class SimpleEventBusTest extends EventBusTestBase {
 
     eventBus.fireEvent(new FooEvent());
     assertNotFired(h);
-  }
-
-  public void testReverseOrder() {
-    @SuppressWarnings("deprecation")
-    final SimpleEventBus eventBus = new SimpleEventBus(true);
-    final FooEvent.Handler handler0 = new FooEvent.Handler() {
-      @Override
-      public void onFoo(FooEvent event) {
-        add(this);
-      }
-    };
-    final FooEvent.Handler handler1 = new FooEvent.Handler() {
-      @Override
-      public void onFoo(FooEvent event) {
-        assertNotFired(handler0);
-        add(this);
-      }
-    };
-    final FooEvent.Handler handler2 = new FooEvent.Handler() {
-      @Override
-      public void onFoo(FooEvent event) {
-        assertNotFired(handler0, handler1);
-        add(this);
-      }
-    };
-    FooEvent.register(eventBus, handler0);
-    FooEvent.register(eventBus, handler1);
-    FooEvent.register(eventBus, handler2);
-
-    reset();
-    eventBus.fireEvent(new FooEvent());
-    assertFired(handler0, handler1, handler2);
   }
 
   private void assertThrowsNpe(Command command) {

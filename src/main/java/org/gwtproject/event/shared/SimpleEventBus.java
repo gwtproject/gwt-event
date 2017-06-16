@@ -34,8 +34,6 @@ public class SimpleEventBus extends EventBus {
     void execute();
   }
 
-  private final boolean isReverseOrder;
-
   private int firingDepth = 0;
 
   /**
@@ -48,25 +46,6 @@ public class SimpleEventBus extends EventBus {
    */
   private final Map<Event.Type<?>, Map<Object, List<?>>> map =
       new HashMap<Event.Type<?>, Map<Object, List<?>>>();
-
-  public SimpleEventBus() {
-    this(false);
-  }
-
-  /**
-   * Allows creation of an instance that fires its handlers in the reverse of
-   * the order in which they were added, although filtered handlers all fire
-   * before unfiltered handlers.
-   * <p>
-   * 
-   * @deprecated This is a legacy feature, required by GWT's old HandlerManager.
-   *             Reverse order is not honored for handlers tied to a specific
-   *             event source (via {@link #addHandlerToSource}.
-   */
-  @Deprecated
-  protected SimpleEventBus(boolean fireInReverseOrder) {
-    isReverseOrder = fireInReverseOrder;
-  }
 
   @Override
   public <H> HandlerRegistration addHandler(Type<H> type, H handler) {
@@ -96,44 +75,12 @@ public class SimpleEventBus extends EventBus {
     doFire(event, source);
   }
 
-  /**
-   * @deprecated required by legacy features in GWT's old HandlerManager
-   */
-  @Deprecated
-  protected <H> void doRemove(Event.Type<H> type, Object source, H handler) {
+  private <H> void doRemove(Event.Type<H> type, Object source, H handler) {
     if (firingDepth > 0) {
       enqueueRemove(type, source, handler);
     } else {
       doRemoveNow(type, source, handler);
     }
-  }
-
-  /**
-   * @deprecated required by legacy features in GWT's old HandlerManager
-   */
-  @Deprecated
-  protected <H> H getHandler(Event.Type<H> type, int index) {
-    assert index < getHandlerCount(type) : "handlers for " + type.getClass() + " have size: "
-        + getHandlerCount(type) + " so do not have a handler at index: " + index;
-
-    List<H> l = getHandlerList(type, null);
-    return l.get(index);
-  }
-
-  /**
-   * @deprecated required by legacy features in GWT's old HandlerManager
-   */
-  @Deprecated
-  protected int getHandlerCount(Event.Type<?> eventKey) {
-    return getHandlerList(eventKey, null).size();
-  }
-
-  /**
-   * @deprecated required by legacy features in GWT's old HandlerManager
-   */
-  @Deprecated
-  protected boolean isEventHandled(Event.Type<?> eventKey) {
-    return map.containsKey(eventKey);
   }
 
   private void defer(Command command) {
@@ -184,10 +131,9 @@ public class SimpleEventBus extends EventBus {
       List<H> handlers = getDispatchList(event.getAssociatedType(), source);
       Set<Throwable> causes = null;
 
-      ListIterator<H> it =
-          isReverseOrder ? handlers.listIterator(handlers.size()) : handlers.listIterator();
-      while (isReverseOrder ? it.hasPrevious() : it.hasNext()) {
-        H handler = isReverseOrder ? it.previous() : it.next();
+      ListIterator<H> it = handlers.listIterator();
+      while (it.hasNext()) {
+        H handler = it.next();
 
         try {
           dispatchEvent(event, handler);

@@ -71,16 +71,6 @@ public class CountingEventBus extends EventBus {
   }
 
   /**
-   * How many handlers are registered for the given {@code type}.
-   *
-   * @deprecated Please use {@code getHandlerCount}.
-   */
-  @Deprecated
-  public int getCount(Type<?> type) {
-    return getHandlerCount(type);
-  }
-
-  /**
    * How many events have fired for the given {@code type}. These events may not have been
    * passed to any handlers.
    */

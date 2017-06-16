@@ -133,7 +133,7 @@ public class CountingEventBusTest extends EventBusTestBase {
 
   private void checkHandlerCount(int expected, Type<?> type) {
     assertEquals(expected, eventBus.getHandlerCount(type));
-    assertEquals(expected, eventBus.getCount(type));
+    assertEquals(expected, eventBus.getHandlerCount(type));
   }
 
   private void checkSourceEvents(int expectedCount, Type<?> type, Object source) {

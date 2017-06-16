@@ -27,13 +27,13 @@ public class ResettableEventBusTest extends EventBusTestBase {
 
     Event.Type<FooEvent.Handler> type = FooEvent.TYPE;
 
-    assertEquals(0, wrapped.getCount(type));
+    assertEquals(0, wrapped.getHandlerCount(type));
 
     subject.addHandler(type, fooHandler1);
     subject.addHandlerToSource(type, "baker", fooHandler2);
     subject.addHandler(type, fooHandler3);
 
-    assertEquals(3, wrapped.getCount(type));
+    assertEquals(3, wrapped.getHandlerCount(type));
 
     subject.fireEvent(new FooEvent());
     assertFired(fooHandler1, fooHandler3);
@@ -47,7 +47,7 @@ public class ResettableEventBusTest extends EventBusTestBase {
     reset();
 
     subject.removeHandlers();
-    assertEquals(0, wrapped.getCount(type));
+    assertEquals(0, wrapped.getHandlerCount(type));
 
     subject.fireEvent(new FooEvent());
     assertNotFired(fooHandler1, fooHandler2, fooHandler3);
