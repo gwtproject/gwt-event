@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -14,8 +14,6 @@
  * the License.
  */
 package org.gwtproject.event.shared;
-
-import org.gwtproject.event.shared.Event.Type;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,10 +23,9 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
+import org.gwtproject.event.shared.Event.Type;
 
-/**
- * Basic implementation of {@link EventBus}.
- */
+/** Basic implementation of {@link EventBus}. */
 public class SimpleEventBus extends EventBus {
   private interface Command {
     void execute();
@@ -36,14 +33,10 @@ public class SimpleEventBus extends EventBus {
 
   private int firingDepth = 0;
 
-  /**
-   * Add and remove operations received during dispatch.
-   */
+  /** Add and remove operations received during dispatch. */
   private List<Command> deferredDeltas;
 
-  /**
-   * Map of event type to map of event source to list of their handlers.
-   */
+  /** Map of event type to map of event source to list of their handlers. */
   private final Map<Event.Type<?>, Map<Object, List<?>>> map =
       new HashMap<Event.Type<?>, Map<Object, List<?>>>();
 
@@ -53,8 +46,8 @@ public class SimpleEventBus extends EventBus {
   }
 
   @Override
-  public <H> HandlerRegistration addHandlerToSource(final Event.Type<H> type, final Object source,
-      final H handler) {
+  public <H> HandlerRegistration addHandlerToSource(
+      final Event.Type<H> type, final Object source, final H handler) {
     if (source == null) {
       throw new NullPointerException("Cannot add a handler with a null source");
     }
@@ -90,8 +83,8 @@ public class SimpleEventBus extends EventBus {
     deferredDeltas.add(command);
   }
 
-  private <H> HandlerRegistration doAdd(final Event.Type<H> type, final Object source,
-      final H handler) {
+  private <H> HandlerRegistration doAdd(
+      final Event.Type<H> type, final Object source, final H handler) {
     if (type == null) {
       throw new NullPointerException("Cannot add a handler with a null type");
     }
@@ -168,21 +161,23 @@ public class SimpleEventBus extends EventBus {
   }
 
   private <H> void enqueueAdd(final Event.Type<H> type, final Object source, final H handler) {
-    defer(new Command() {
-      @Override
-      public void execute() {
-        doAddNow(type, source, handler);
-      }
-    });
+    defer(
+        new Command() {
+          @Override
+          public void execute() {
+            doAddNow(type, source, handler);
+          }
+        });
   }
 
   private <H> void enqueueRemove(final Event.Type<H> type, final Object source, final H handler) {
-    defer(new Command() {
-      @Override
-      public void execute() {
-        doRemoveNow(type, source, handler);
-      }
-    });
+    defer(
+        new Command() {
+          @Override
+          public void execute() {
+            doRemoveNow(type, source, handler);
+          }
+        });
   }
 
   private <H> List<H> ensureHandlerList(Event.Type<H> type, Object source) {

@@ -15,18 +15,15 @@
  */
 package org.gwtproject.event.shared.testing;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.gwtproject.event.shared.Event;
 import org.gwtproject.event.shared.Event.Type;
 import org.gwtproject.event.shared.EventBus;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.SimpleEventBus;
 
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- * Wraps an {@link EventBus} implementation to keep track of fired events.
- */
+/** Wraps an {@link EventBus} implementation to keep track of fired events. */
 public class RecordingEventBus extends EventBus {
   private final Set<Event<?>> firedEvents = new HashSet<Event<?>>();
   private final EventBus wrapped;
@@ -49,9 +46,7 @@ public class RecordingEventBus extends EventBus {
     return wrapped.addHandlerToSource(type, source, handler);
   }
 
-  /**
-   * Clears the remembered list of fired events.
-   */
+  /** Clears the remembered list of fired events. */
   public void clearFiredEvents() {
     firedEvents.clear();
   }
@@ -68,9 +63,7 @@ public class RecordingEventBus extends EventBus {
     wrapped.fireEventFromSource(event, source);
   }
 
-  /**
-   * Returns {@code true} if the specified event was fired.
-   */
+  /** Returns {@code true} if the specified event was fired. */
   public boolean wasEventFired(Event<?> event) {
     return firedEvents.contains(event);
   }

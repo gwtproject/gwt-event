@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,14 +15,13 @@
  */
 package org.gwtproject.event.shared.testing;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.gwtproject.event.shared.Event;
 import org.gwtproject.event.shared.Event.Type;
 import org.gwtproject.event.shared.EventBus;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.SimpleEventBus;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Wraps an {@link EventBus} to keep a count of registered handlers and how many times events have
@@ -71,24 +70,22 @@ public class CountingEventBus extends EventBus {
   }
 
   /**
-   * How many events have fired for the given {@code type}. These events may not have been
-   * passed to any handlers.
+   * How many events have fired for the given {@code type}. These events may not have been passed to
+   * any handlers.
    */
   public int getFiredCount(Type<?> type) {
     return firedCounts.getCount(type);
   }
 
   /**
-   * How many events have fired for the given pairing  of {@code type} and {@code source}. These
+   * How many events have fired for the given pairing of {@code type} and {@code source}. These
    * events may not have been passed to any handlers.
    */
   public int getFiredCountFromSource(Type<?> type, Object source) {
     return sourceCounts.getCount(new TypeSourcePair(type, source));
   }
 
-  /**
-   * How many handlers are registered for the given {@code type}.
-   */
+  /** How many handlers are registered for the given {@code type}. */
   public int getHandlerCount(Type<?> type) {
     return handlerCounts.getCount(type);
   }
@@ -121,7 +118,7 @@ public class CountingEventBus extends EventBus {
         return false;
       }
 
-      TypeSourcePair pair = (TypeSourcePair) o;      
+      TypeSourcePair pair = (TypeSourcePair) o;
       return doNullEquals(type, pair.type) && doNullEquals(source, pair.source);
     }
 
@@ -140,7 +137,7 @@ public class CountingEventBus extends EventBus {
       return ((a == null) && (b == null)) || a.equals(b);
     }
   }
-  
+
   private static class KeyedCounter<K> {
     private Map<K, Integer> counts = new HashMap<K, Integer>();
 

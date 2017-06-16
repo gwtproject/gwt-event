@@ -18,19 +18,16 @@ package org.gwtproject.event.shared;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * Tests of shared Event code.
- */
+/** Tests of shared Event code. */
 public class EventSharedSuite {
   public static Test suite() {
     TestSuite suite = new TestSuite("Tests of shared Event code");
-    
+
     suite.addTestSuite(SimpleEventBusTest.class);
     suite.addTestSuite(ResettableEventBusTest.class);
-    
+
     return suite;
   }
-  
-  private EventSharedSuite() {
-  }
+
+  private EventSharedSuite() {}
 }

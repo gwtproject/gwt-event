@@ -15,17 +15,13 @@
  */
 package org.gwtproject.event.shared;
 
-/**
- * For {@link EventBus} tests.
- */
+/** For {@link EventBus} tests. */
 public class FooEvent extends Event<FooEvent.Handler> {
-  /**
-   * The handler for the event.
-   */
+  /** The handler for the event. */
   public interface Handler {
     void onFoo(FooEvent e);
   }
-  
+
   public static final Type<Handler> TYPE = new Type<Handler>();
 
   public static HandlerRegistration register(EventBus bus, Handler handler) {
@@ -35,12 +31,12 @@ public class FooEvent extends Event<FooEvent.Handler> {
   public static HandlerRegistration register(EventBus bus, Object source, Handler handler) {
     return bus.addHandlerToSource(TYPE, source, handler);
   }
-  
+
   @Override
   public org.gwtproject.event.shared.Event.Type<Handler> getAssociatedType() {
     return TYPE;
   }
-  
+
   @Override
   protected void dispatch(Handler handler) {
     handler.onFoo(this);

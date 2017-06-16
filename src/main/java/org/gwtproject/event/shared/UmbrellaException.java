@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -19,10 +19,9 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
- * A {@link RuntimeException} that collects a {@link Set} of child
- * {@link Throwable}s together. Typically thrown after a loop, with all of the
- * exceptions thrown during that loop, but delayed so that the loop finishes
- * executing.
+ * A {@link RuntimeException} that collects a {@link Set} of child {@link Throwable}s together.
+ * Typically thrown after a loop, with all of the exceptions thrown during that loop, but delayed so
+ * that the loop finishes executing.
  */
 @SuppressWarnings("serial")
 public class UmbrellaException extends RuntimeException {
@@ -57,9 +56,7 @@ public class UmbrellaException extends RuntimeException {
     return b.toString();
   }
 
-  /**
-   * The causes of the exception.
-   */
+  /** The causes of the exception. */
   private Set<Throwable> causes;
 
   public UmbrellaException(Set<Throwable> causes) {
@@ -75,18 +72,16 @@ public class UmbrellaException extends RuntimeException {
     }
   }
 
-  /**
-   * Required for GWT RPC serialization.
-   */
+  /** Required for GWT RPC serialization. */
   protected UmbrellaException() {
     // Can't delegate to the other constructor or GWT RPC gets cranky
     super(MULTIPLE);
-    this.causes = Collections.<Throwable> emptySet();
+    this.causes = Collections.<Throwable>emptySet();
   }
 
   /**
    * Get the set of exceptions that caused the failure.
-   * 
+   *
    * @return the set of causes
    */
   public Set<Throwable> getCauses() {

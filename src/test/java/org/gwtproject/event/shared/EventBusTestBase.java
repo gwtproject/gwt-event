@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,18 +16,13 @@
 
 package org.gwtproject.event.shared;
 
+import java.util.HashSet;
 import junit.framework.TestCase;
 
-import java.util.HashSet;
-
-/**
- * Support code for handler tests.
- */
+/** Support code for handler tests. */
 public abstract class EventBusTestBase extends TestCase {
 
-  /**
-   * Handler implementation to allow for easy testing of whether the handler is being called.
-   */
+  /** Handler implementation to allow for easy testing of whether the handler is being called. */
   protected class Adaptor implements FooEvent.Handler, BarEvent.Handler {
 
     @Override
@@ -50,80 +45,86 @@ public abstract class EventBusTestBase extends TestCase {
 
   private HashSet<Object> active = new HashSet<Object>();
 
-  protected FooEvent.Handler fooHandler1 = new FooEvent.Handler() {
-    @Override
-    public void onFoo(FooEvent event) {
-      add(fooHandler1);
-    }
+  protected FooEvent.Handler fooHandler1 =
+      new FooEvent.Handler() {
+        @Override
+        public void onFoo(FooEvent event) {
+          add(fooHandler1);
+        }
 
-    @Override
-    public String toString() {
-      return "fooHandler 1";
-    }
-  };
+        @Override
+        public String toString() {
+          return "fooHandler 1";
+        }
+      };
 
-  protected FooEvent.Handler fooHandler2 = new FooEvent.Handler() {
-    @Override
-    public void onFoo(FooEvent event) {
-      add(fooHandler2);
-    }
+  protected FooEvent.Handler fooHandler2 =
+      new FooEvent.Handler() {
+        @Override
+        public void onFoo(FooEvent event) {
+          add(fooHandler2);
+        }
 
-    @Override
-    public String toString() {
-      return "fooHandler 2";
-    }
-  };
+        @Override
+        public String toString() {
+          return "fooHandler 2";
+        }
+      };
 
-  protected FooEvent.Handler fooHandler3 = new FooEvent.Handler() {
-    @Override
-    public void onFoo(FooEvent event) {
-      add(fooHandler3);
-    }
+  protected FooEvent.Handler fooHandler3 =
+      new FooEvent.Handler() {
+        @Override
+        public void onFoo(FooEvent event) {
+          add(fooHandler3);
+        }
 
-    @Override
-    public String toString() {
-      return "fooHandler 3";
-    }
-  };
+        @Override
+        public String toString() {
+          return "fooHandler 3";
+        }
+      };
 
-  protected BarEvent.Handler barHandler1 = new BarEvent.Handler() {
+  protected BarEvent.Handler barHandler1 =
+      new BarEvent.Handler() {
 
-    @Override
-    public void onBar(BarEvent event) {
-      add(barHandler1);
-    }
+        @Override
+        public void onBar(BarEvent event) {
+          add(barHandler1);
+        }
 
-    @Override
-    public String toString() {
-      return "barHandler 1";
-    }
-  };
+        @Override
+        public String toString() {
+          return "barHandler 1";
+        }
+      };
 
-  protected BarEvent.Handler barHandler2 = new BarEvent.Handler() {
+  protected BarEvent.Handler barHandler2 =
+      new BarEvent.Handler() {
 
-    @Override
-    public void onBar(BarEvent event) {
-      add(barHandler2);
-    }
+        @Override
+        public void onBar(BarEvent event) {
+          add(barHandler2);
+        }
 
-    @Override
-    public String toString() {
-      return "barHandler 2";
-    }
-  };
+        @Override
+        public String toString() {
+          return "barHandler 2";
+        }
+      };
 
-  protected BarEvent.Handler barHandler3 = new BarEvent.Handler() {
+  protected BarEvent.Handler barHandler3 =
+      new BarEvent.Handler() {
 
-    @Override
-    public void onBar(BarEvent event) {
-      add(barHandler3);
-    }
+        @Override
+        public void onBar(BarEvent event) {
+          add(barHandler3);
+        }
 
-    @Override
-    public String toString() {
-      return "barHandler 3";
-    }
-  };
+        @Override
+        public String toString() {
+          return "barHandler 3";
+        }
+      };
 
   protected void add(Object handler) {
     active.add(handler);
@@ -137,13 +138,11 @@ public abstract class EventBusTestBase extends TestCase {
 
   protected void assertNotFired(Object... handler) {
     for (int i = 0; i < handler.length; i++) {
-      assertFalse(handler[i] + " should not have fired",
-          active.contains(handler[i]));
+      assertFalse(handler[i] + " should not have fired", active.contains(handler[i]));
     }
   }
 
   protected void reset() {
     active.clear();
   }
-
 }

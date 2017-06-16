@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,9 +23,7 @@ import org.gwtproject.event.shared.FooEvent;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.gwtproject.event.shared.SimpleEventBus;
 
-/**
- * Eponymous unit tests.
- */
+/** Eponymous unit tests. */
 public class CountingEventBusTest extends EventBusTestBase {
   private CountingEventBus eventBus;
 
@@ -56,7 +54,7 @@ public class CountingEventBusTest extends EventBusTestBase {
   public void testAddAndRemoveSourcedHandlers() {
     Object source1 = new Object();
     Object source2 = new Object();
-    
+
     HandlerRegistration fooReg1 = eventBus.addHandlerToSource(FooEvent.TYPE, source1, fooHandler1);
     checkHandlerCount(1, FooEvent.TYPE);
 
@@ -88,7 +86,7 @@ public class CountingEventBusTest extends EventBusTestBase {
   public void testFireEventFromSource() {
     Object source1 = new Object();
     Object source2 = new Object();
-    
+
     eventBus.fireEvent(new FooEvent());
     checkSourceEvents(0, FooEvent.TYPE, source1);
     checkSourceEvents(0, FooEvent.TYPE, source2);
@@ -145,4 +143,3 @@ public class CountingEventBusTest extends EventBusTestBase {
     assertEquals(expectedCount, eventBus.getFiredCountFromSource(type, null));
   }
 }
-

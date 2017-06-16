@@ -1,6 +1,7 @@
 plugins {
   id "java-library"
   id "net.ltgt.errorprone" version "0.0.10"
+  id "com.github.sherter.google-java-format" version "0.6"
 }
 
 group = "org.gwtproject.event"
@@ -23,4 +24,8 @@ tasks.withType(JavaCompile) {
 
 test {
   include "**/*Suite.class"
+}
+
+googleJavaFormat {
+  toolVersion = "1.3"
 }

@@ -15,9 +15,7 @@ package org.gwtproject.event.shared;
 
 import junit.framework.TestCase;
 
-/**
- * Unit test for {@link HandlerRegistrations}.
- */
+/** Unit test for {@link HandlerRegistrations}. */
 public class HandlerRegistrationsTest extends TestCase {
 
   private static class MockHandlerRegistration implements HandlerRegistration {
@@ -46,5 +44,4 @@ public class HandlerRegistrationsTest extends TestCase {
     assertEquals(1, hr1.removeHandlerCallCount);
     assertEquals(1, hr2.removeHandlerCallCount);
   }
-
 }

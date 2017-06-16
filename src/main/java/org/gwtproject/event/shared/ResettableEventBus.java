@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,15 +15,14 @@
  */
 package org.gwtproject.event.shared;
 
-import org.gwtproject.event.shared.Event.Type;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import org.gwtproject.event.shared.Event.Type;
 
 /**
- * Wraps an EventBus to hold on to any HandlerRegistrations, so that they can
- * easily all be cleared at once.
+ * Wraps an EventBus to hold on to any HandlerRegistrations, so that they can easily all be cleared
+ * at once.
  */
 public class ResettableEventBus extends EventBus {
   private final EventBus wrapped;
@@ -55,9 +54,7 @@ public class ResettableEventBus extends EventBus {
     wrapped.fireEventFromSource(event, source);
   }
 
-  /**
-   * Remove all handlers that have been added through this wrapper.
-   */
+  /** Remove all handlers that have been added through this wrapper. */
   public void removeHandlers() {
     Iterator<HandlerRegistration> it = registrations.iterator();
     while (it.hasNext()) {
@@ -73,9 +70,7 @@ public class ResettableEventBus extends EventBus {
     }
   }
 
-  /**
-   *  Visible for testing.
-   */
+  /** Visible for testing. */
   protected int getRegistrationSize() {
     return registrations.size();
   }

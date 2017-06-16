@@ -1,12 +1,12 @@
 /*
  * Copyright 2011 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,20 +15,17 @@
  */
 package org.gwtproject.event.shared;
 
-import junit.framework.TestCase;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import junit.framework.TestCase;
 
-/**
- * Unit test for {@link #UmbrellaException}.
- */
+/** Unit test for {@link #UmbrellaException}. */
 public class UmbrellaExceptionTest extends TestCase {
   public void testNone() {
     // Why?
     try {
-      throw new UmbrellaException(Collections.<Throwable> emptySet());
+      throw new UmbrellaException(Collections.<Throwable>emptySet());
     } catch (UmbrellaException e) {
       assertNull(e.getCause());
       assertNull(e.getMessage());
@@ -74,10 +71,11 @@ public class UmbrellaExceptionTest extends TestCase {
     }
   }
 
-  private void assertCauseMatchesFirstMessage(UmbrellaException e, String firstMessage,
-      String otherMessage) {
-    assertTrue("Cause should be first message", e.getMessage().startsWith(
-        2 + UmbrellaException.MULTIPLE + firstMessage));
+  private void assertCauseMatchesFirstMessage(
+      UmbrellaException e, String firstMessage, String otherMessage) {
+    assertTrue(
+        "Cause should be first message",
+        e.getMessage().startsWith(2 + UmbrellaException.MULTIPLE + firstMessage));
     assertTrue("Should also see the other message", e.getMessage().contains(otherMessage));
   }
 }
