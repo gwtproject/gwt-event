@@ -24,6 +24,7 @@ import java.util.Set;
  * exceptions thrown during that loop, but delayed so that the loop finishes
  * executing.
  */
+@SuppressWarnings("serial")
 public class UmbrellaException extends RuntimeException {
 
   // Visible for testing
