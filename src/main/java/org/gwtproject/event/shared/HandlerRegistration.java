@@ -19,6 +19,11 @@ package org.gwtproject.event.shared;
  * Registration objects returned when an event handler is bound (e.g. via {@link
  * EventBus#addHandler}), used to deregister.
  *
+ * <p>To use {@code com.google.web.bindery.event.shared.HandlerRegistration} or {@code
+ * com.google.gwt.event.shared.HandlerRegistration} in a context where a {@code
+ * org.gwtproject.web.bindery.event.shared.HandlerRegistration} is needed, or the reverse, use
+ * {@code handlerRegistration::removeHandler}.
+ *
  * <p>A tip: to make a handler deregister itself try something like the following:
  *
  * <pre>new MyHandler() {
