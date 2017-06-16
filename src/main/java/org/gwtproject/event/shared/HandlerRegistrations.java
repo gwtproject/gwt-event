@@ -43,11 +43,13 @@ public class HandlerRegistrations {
    * HandlerRegistration#removeHandler()} on all supplied handlers if {@link
    * HandlerRegistration#removeHandler()} is called on the returned object.
    *
-   * <p>A simple example: <code><pre>
+   * <p>A simple example:
+   *
+   * <pre>
    * HandlerRegistration hr1 = ...
    * HandlerRegistration hr2 = ...
    * return HandlerRegistrations.compose(hr1, hr2);
-   * </pre></code>
+   * </pre>
    *
    * @param handlers the {@link HandlerRegistration handler registrations} that should be composed
    *     into a single {@link HandlerRegistration}

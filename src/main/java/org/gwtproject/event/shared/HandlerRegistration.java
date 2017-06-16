@@ -19,16 +19,17 @@ package org.gwtproject.event.shared;
  * Registration objects returned when an event handler is bound (e.g. via {@link
  * EventBus#addHandler}), used to deregister.
  *
- * <p>A tip: to make a handler deregister itself try something like the following: <code>
+ * <p>A tip: to make a handler deregister itself try something like the following:
+ *
  * <pre>new MyHandler() {
  *  HandlerRegistration reg = MyEvent.register(eventBus, this);
  *
  *  public void onMyThing(MyEvent event) {
- *    {@literal /}* do your thing *{@literal /}
+ *    // do your thing
  *    reg.removeHandler();
  *  }
  * };
- * </pre></code>
+ * </pre>
  */
 public interface HandlerRegistration {
 

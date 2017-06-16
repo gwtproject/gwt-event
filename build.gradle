@@ -26,6 +26,10 @@ test {
   include "**/*Suite.class"
 }
 
+javadoc {
+  options.addBooleanOption("Xdoclint:all,-missing", true)
+}
+
 googleJavaFormat {
   toolVersion = "1.3"
 }
