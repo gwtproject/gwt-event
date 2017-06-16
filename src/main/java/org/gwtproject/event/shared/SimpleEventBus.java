@@ -106,6 +106,7 @@ public class SimpleEventBus extends EventBus {
     }
 
     return new HandlerRegistration() {
+      @Override
       public void removeHandler() {
         doRemove(type, source, handler);
       }
@@ -168,6 +169,7 @@ public class SimpleEventBus extends EventBus {
 
   private <H> void enqueueAdd(final Event.Type<H> type, final Object source, final H handler) {
     defer(new Command() {
+      @Override
       public void execute() {
         doAddNow(type, source, handler);
       }
@@ -176,6 +178,7 @@ public class SimpleEventBus extends EventBus {
 
   private <H> void enqueueRemove(final Event.Type<H> type, final Object source, final H handler) {
     defer(new Command() {
+      @Override
       public void execute() {
         doRemoveNow(type, source, handler);
       }

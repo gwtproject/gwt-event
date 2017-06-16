@@ -95,6 +95,7 @@ public class CountingEventBus extends EventBus {
 
   private <H> HandlerRegistration makeReg(final Type<H> type, final HandlerRegistration superReg) {
     return new HandlerRegistration() {
+      @Override
       public void removeHandler() {
         handlerCounts.decrement(type);
         superReg.removeHandler();
@@ -102,7 +103,7 @@ public class CountingEventBus extends EventBus {
     };
   }
 
-  private class TypeSourcePair {
+  private static class TypeSourcePair {
     final Type<?> type;
     final Object source;
 
@@ -140,7 +141,7 @@ public class CountingEventBus extends EventBus {
     }
   }
   
-  private class KeyedCounter<K> {
+  private static class KeyedCounter<K> {
     private Map<K, Integer> counts = new HashMap<K, Integer>();
 
     int getCount(K key) {
