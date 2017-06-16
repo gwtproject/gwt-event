@@ -1,0 +1,25 @@
+plugins {
+  id "java-library"
+  id "net.ltgt.errorprone" version "0.0.10"
+}
+
+group = "org.gwtproject.event"
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  errorprone "com.google.errorprone:error_prone_core:2.0.19"
+
+  testImplementation "junit:junit:4.12"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+tasks.withType(JavaCompile) {
+  options.encoding = "UTF-8"
+}
+
+test {
+  include "**/*Suite.class"
+}
