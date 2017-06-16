@@ -15,19 +15,14 @@
  */
 package org.gwtproject.event.shared;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 /** Tests of shared Event code. */
-public class EventSharedSuite {
-  public static Test suite() {
-    TestSuite suite = new TestSuite("Tests of shared Event code");
-
-    suite.addTestSuite(SimpleEventBusTest.class);
-    suite.addTestSuite(ResettableEventBusTest.class);
-
-    return suite;
-  }
-
-  private EventSharedSuite() {}
-}
+@RunWith(Suite.class)
+@SuiteClasses({
+  SimpleEventBusTest.class,
+  ResettableEventBusTest.class,
+})
+public class EventSharedSuite {}
