@@ -15,6 +15,7 @@
  */
 package org.gwtproject.event.shared;
 
+import org.gwtproject.event.shared.testing.CountingEventBusTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -22,7 +23,10 @@ import org.junit.runners.Suite.SuiteClasses;
 /** Tests of shared Event code. */
 @RunWith(Suite.class)
 @SuiteClasses({
+  CountingEventBusTest.class,
+  HandlerRegistrationsTest.class,
   SimpleEventBusTest.class,
   ResettableEventBusTest.class,
+  UmbrellaExceptionTest.class,
 })
 public class EventSharedSuite {}
