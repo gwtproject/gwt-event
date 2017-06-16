@@ -43,7 +43,7 @@ public abstract class EventBusTestBase extends TestCase {
 
   protected Adaptor adaptor1 = new Adaptor();
 
-  private HashSet<Object> active = new HashSet<Object>();
+  private HashSet<Object> active = new HashSet<>();
 
   protected FooEvent.Handler fooHandler1 =
       new FooEvent.Handler() {
@@ -131,14 +131,14 @@ public abstract class EventBusTestBase extends TestCase {
   }
 
   protected void assertFired(Object... handler) {
-    for (int i = 0; i < handler.length; i++) {
-      assertTrue(handler[i] + " should have fired", active.contains(handler[i]));
+    for (Object aHandler : handler) {
+      assertTrue(aHandler + " should have fired", active.contains(aHandler));
     }
   }
 
   protected void assertNotFired(Object... handler) {
-    for (int i = 0; i < handler.length; i++) {
-      assertFalse(handler[i] + " should not have fired", active.contains(handler[i]));
+    for (Object aHandler : handler) {
+      assertFalse(aHandler + " should not have fired", active.contains(aHandler));
     }
   }
 

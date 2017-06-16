@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import org.gwtproject.event.shared.Event.Type;
@@ -37,8 +36,7 @@ public class SimpleEventBus extends EventBus {
   private List<Command> deferredDeltas;
 
   /** Map of event type to map of event source to list of their handlers. */
-  private final Map<Event.Type<?>, Map<Object, List<?>>> map =
-      new HashMap<Event.Type<?>, Map<Object, List<?>>>();
+  private final Map<Event.Type<?>, Map<Object, List<?>>> map = new HashMap<>();
 
   @Override
   public <H> HandlerRegistration addHandler(Type<H> type, H handler) {
@@ -78,7 +76,7 @@ public class SimpleEventBus extends EventBus {
 
   private void defer(Command command) {
     if (deferredDeltas == null) {
-      deferredDeltas = new ArrayList<Command>();
+      deferredDeltas = new ArrayList<>();
     }
     deferredDeltas.add(command);
   }
@@ -125,15 +123,12 @@ public class SimpleEventBus extends EventBus {
       List<H> handlers = getDispatchList(event.getAssociatedType(), source);
       Set<Throwable> causes = null;
 
-      ListIterator<H> it = handlers.listIterator();
-      while (it.hasNext()) {
-        H handler = it.next();
-
+      for (H handler : handlers) {
         try {
           dispatchEvent(event, handler);
         } catch (Throwable e) {
           if (causes == null) {
-            causes = new HashSet<Throwable>();
+            causes = new HashSet<>();
           }
           causes.add(e);
         }
@@ -183,7 +178,7 @@ public class SimpleEventBus extends EventBus {
   private <H> List<H> ensureHandlerList(Event.Type<H> type, Object source) {
     Map<Object, List<?>> sourceMap = map.get(type);
     if (sourceMap == null) {
-      sourceMap = new HashMap<Object, List<?>>();
+      sourceMap = new HashMap<>();
       map.put(type, sourceMap);
     }
 
@@ -191,7 +186,7 @@ public class SimpleEventBus extends EventBus {
     @SuppressWarnings("unchecked")
     List<H> handlers = (List<H>) sourceMap.get(source);
     if (handlers == null) {
-      handlers = new ArrayList<H>();
+      handlers = new ArrayList<>();
       sourceMap.put(source, handlers);
     }
 
@@ -206,7 +201,7 @@ public class SimpleEventBus extends EventBus {
 
     List<H> globalHandlers = getHandlerList(type, null);
 
-    List<H> rtn = new ArrayList<H>(directHandlers);
+    List<H> rtn = new ArrayList<>(directHandlers);
     rtn.addAll(globalHandlers);
     return rtn;
   }

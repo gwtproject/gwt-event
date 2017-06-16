@@ -25,7 +25,7 @@ public class UmbrellaExceptionTest extends TestCase {
   public void testNone() {
     // Why?
     try {
-      throw new UmbrellaException(Collections.<Throwable>emptySet());
+      throw new UmbrellaException(Collections.emptySet());
     } catch (UmbrellaException e) {
       assertNull(e.getCause());
       assertNull(e.getMessage());
@@ -33,7 +33,7 @@ public class UmbrellaExceptionTest extends TestCase {
   }
 
   public void testOne() {
-    Set<Throwable> causes = new HashSet<Throwable>();
+    Set<Throwable> causes = new HashSet<>();
     String message = "Just me";
     RuntimeException theOne = new RuntimeException(message);
     causes.add(theOne);
@@ -47,7 +47,7 @@ public class UmbrellaExceptionTest extends TestCase {
   }
 
   public void testSome() {
-    Set<Throwable> causes = new HashSet<Throwable>();
+    Set<Throwable> causes = new HashSet<>();
     String oneMessage = "one";
     RuntimeException oneException = new RuntimeException(oneMessage);
     causes.add(oneException);

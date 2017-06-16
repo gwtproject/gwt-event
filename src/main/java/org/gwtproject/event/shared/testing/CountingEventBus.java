@@ -17,6 +17,7 @@ package org.gwtproject.event.shared.testing;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import org.gwtproject.event.shared.Event;
 import org.gwtproject.event.shared.Event.Type;
 import org.gwtproject.event.shared.EventBus;
@@ -28,9 +29,9 @@ import org.gwtproject.event.shared.SimpleEventBus;
  * fired. Handy for tests.
  */
 public class CountingEventBus extends EventBus {
-  private final KeyedCounter<Type<?>> handlerCounts = new KeyedCounter<Event.Type<?>>();
-  private final KeyedCounter<Type<?>> firedCounts = new KeyedCounter<Event.Type<?>>();
-  private final KeyedCounter<TypeSourcePair> sourceCounts = new KeyedCounter<TypeSourcePair>();
+  private final KeyedCounter<Type<?>> handlerCounts = new KeyedCounter<>();
+  private final KeyedCounter<Type<?>> firedCounts = new KeyedCounter<>();
+  private final KeyedCounter<TypeSourcePair> sourceCounts = new KeyedCounter<>();
   private final EventBus wrapped;
 
   public CountingEventBus() {
@@ -119,7 +120,7 @@ public class CountingEventBus extends EventBus {
       }
 
       TypeSourcePair pair = (TypeSourcePair) o;
-      return doNullEquals(type, pair.type) && doNullEquals(source, pair.source);
+      return Objects.equals(type, pair.type) && Objects.equals(source, pair.source);
     }
 
     @Override
@@ -129,17 +130,10 @@ public class CountingEventBus extends EventBus {
       hash = (hash * 31) + (source == null ? 0 : source.hashCode());
       return hash;
     }
-
-    private boolean doNullEquals(Object a, Object b) {
-      if ((a == null) ^ (b == null)) {
-        return false;
-      }
-      return ((a == null) && (b == null)) || a.equals(b);
-    }
   }
 
   private static class KeyedCounter<K> {
-    private Map<K, Integer> counts = new HashMap<K, Integer>();
+    private Map<K, Integer> counts = new HashMap<>();
 
     int getCount(K key) {
       Integer count = counts.get(key);

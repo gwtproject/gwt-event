@@ -25,7 +25,7 @@ import org.gwtproject.event.shared.SimpleEventBus;
 
 /** Wraps an {@link EventBus} implementation to keep track of fired events. */
 public class RecordingEventBus extends EventBus {
-  private final Set<Event<?>> firedEvents = new HashSet<Event<?>>();
+  private final Set<Event<?>> firedEvents = new HashSet<>();
   private final EventBus wrapped;
 
   public RecordingEventBus() {

@@ -22,7 +22,7 @@ public class BarEvent extends Event<BarEvent.Handler> {
     void onBar(BarEvent e);
   }
 
-  public static final Type<Handler> TYPE = new Type<Handler>();
+  public static final Type<Handler> TYPE = new Type<>();
 
   public static HandlerRegistration register(EventBus bus, Handler handler) {
     return bus.addHandler(TYPE, handler);
