@@ -22,6 +22,10 @@ tasks.withType(JavaCompile) {
   options.compilerArgs << "-Werror" << "-Xlint:all"
 }
 
+jar {
+  from sourceSets.main.allJava
+}
+
 test {
   include "**/*Suite.class"
 }
