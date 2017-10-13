@@ -1,13 +1,15 @@
 task generateGwtTestSources(type: Copy) {
+  inputs.property("gwtTestModule", { -> ext.gwtTestModule })
+
   from sourceSets.test.allJava.sourceDirectories
   into "$buildDir/generated-sources/gwtTest/"
   filter {
     if (it == 'import junit.framework.TestCase;') {
       return 'import com.google.gwt.junit.client.GWTTestCase;'
     }
-    it.replace('extends TestCase {', '''extends GWTTestCase {
+    it.replace('extends TestCase {', """extends GWTTestCase {
   @Override
-  public String getModuleName() { return "org.gwtproject.event.Event"; }''')
+  public String getModuleName() { return "${ext.gwtTestModule}"; }""")
       .replace('protected void setUp()', 'protected void gwtSetUp()')
       .replace('super.setUp()', 'super.gwtSetUp()')
       .replace('protected void tearDown()', 'protected void gwtTearDown()')
