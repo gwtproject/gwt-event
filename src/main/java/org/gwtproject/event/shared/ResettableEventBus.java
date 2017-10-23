@@ -26,7 +26,7 @@ import org.gwtproject.event.shared.Event.Type;
  */
 public class ResettableEventBus extends EventBus {
   private final EventBus wrapped;
-  private final Set<HandlerRegistration> registrations = new HashSet<HandlerRegistration>();
+  private final Set<HandlerRegistration> registrations = new HashSet<>();
 
   public ResettableEventBus(EventBus wrappedBus) {
     this.wrapped = wrappedBus;
@@ -71,18 +71,13 @@ public class ResettableEventBus extends EventBus {
   }
 
   /** Visible for testing. */
-  protected int getRegistrationSize() {
+  int getRegistrationSize() {
     return registrations.size();
   }
 
   private HandlerRegistration doRegisterHandler(final HandlerRegistration registration) {
     registrations.add(registration);
-    return new HandlerRegistration() {
-      @Override
-      public void removeHandler() {
-        doUnregisterHandler(registration);
-      }
-    };
+    return () -> doUnregisterHandler(registration);
   }
 
   private void doUnregisterHandler(HandlerRegistration registration) {

@@ -122,13 +122,7 @@ public class SimpleEventBusTest extends EventBusTestBase {
     final SimpleEventBus eventBus = new SimpleEventBus();
 
     try {
-      assertThrowsNpe(
-          new Command() {
-            @Override
-            public void execute() {
-              FooEvent.register(eventBus, fooHandler1);
-            }
-          });
+      assertThrowsNpe(() -> FooEvent.register(eventBus, fooHandler1));
       throw new Error("expected AssertionFailedError");
     } catch (AssertionFailedError e) {
       /* pass */
@@ -326,66 +320,18 @@ public class SimpleEventBusTest extends EventBusTestBase {
 
   public void testNullChecks() {
     final SimpleEventBus eventBus = new SimpleEventBus();
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            eventBus.addHandler(null, fooHandler1);
-          }
-        });
+    assertThrowsNpe(() -> eventBus.addHandler(null, fooHandler1));
 
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            FooEvent.register(eventBus, "foo", null);
-          }
-        });
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            FooEvent.register(eventBus, null, fooHandler1);
-          }
-        });
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            eventBus.addHandlerToSource(null, "foo", fooHandler1);
-          }
-        });
+    assertThrowsNpe(() -> FooEvent.register(eventBus, "foo", null));
+    assertThrowsNpe(() -> FooEvent.register(eventBus, null, fooHandler1));
+    assertThrowsNpe(() -> eventBus.addHandlerToSource(null, "foo", fooHandler1));
 
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            eventBus.fireEvent(null);
-          }
-        });
+    assertThrowsNpe(() -> eventBus.fireEvent(null));
 
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            eventBus.fireEventFromSource(null, "");
-          }
-        });
+    assertThrowsNpe(() -> eventBus.fireEventFromSource(null, ""));
 
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            eventBus.fireEventFromSource(new FooEvent() {}, null);
-          }
-        });
-    assertThrowsNpe(
-        new Command() {
-          @Override
-          public void execute() {
-            eventBus.fireEventFromSource(null, "baker");
-          }
-        });
+    assertThrowsNpe(() -> eventBus.fireEventFromSource(new FooEvent() {}, null));
+    assertThrowsNpe(() -> eventBus.fireEventFromSource(null, "baker"));
   }
 
   public void testNullSourceOkay() {

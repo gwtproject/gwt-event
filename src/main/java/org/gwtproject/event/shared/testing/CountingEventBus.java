@@ -92,12 +92,9 @@ public class CountingEventBus extends EventBus {
   }
 
   private <H> HandlerRegistration makeReg(final Type<H> type, final HandlerRegistration superReg) {
-    return new HandlerRegistration() {
-      @Override
-      public void removeHandler() {
-        handlerCounts.decrement(type);
-        superReg.removeHandler();
-      }
+    return () -> {
+      handlerCounts.decrement(type);
+      superReg.removeHandler();
     };
   }
 

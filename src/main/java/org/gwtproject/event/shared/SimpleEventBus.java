@@ -96,12 +96,7 @@ public class SimpleEventBus extends EventBus {
       doAddNow(type, source, handler);
     }
 
-    return new HandlerRegistration() {
-      @Override
-      public void removeHandler() {
-        doRemove(type, source, handler);
-      }
-    };
+    return () -> doRemove(type, source, handler);
   }
 
   private <H> void doAddNow(Event.Type<H> type, Object source, H handler) {
@@ -156,31 +151,15 @@ public class SimpleEventBus extends EventBus {
   }
 
   private <H> void enqueueAdd(final Event.Type<H> type, final Object source, final H handler) {
-    defer(
-        new Command() {
-          @Override
-          public void execute() {
-            doAddNow(type, source, handler);
-          }
-        });
+    defer(() -> doAddNow(type, source, handler));
   }
 
   private <H> void enqueueRemove(final Event.Type<H> type, final Object source, final H handler) {
-    defer(
-        new Command() {
-          @Override
-          public void execute() {
-            doRemoveNow(type, source, handler);
-          }
-        });
+    defer(() -> doRemoveNow(type, source, handler));
   }
 
   private <H> List<H> ensureHandlerList(Event.Type<H> type, Object source) {
-    Map<Object, List<?>> sourceMap = map.get(type);
-    if (sourceMap == null) {
-      sourceMap = new HashMap<>();
-      map.put(type, sourceMap);
-    }
+    Map<Object, List<?>> sourceMap = map.computeIfAbsent(type, k -> new HashMap<>());
 
     // safe, we control the puts.
     @SuppressWarnings("unchecked")

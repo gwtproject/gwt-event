@@ -20,7 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 import junit.framework.TestCase;
 
-/** Unit test for {@link #UmbrellaException}. */
+/** Unit test for {@link UmbrellaException}. */
 public class UmbrellaExceptionTest extends TestCase {
   public void testNone() {
     // Why?
