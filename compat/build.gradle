@@ -1,8 +1,12 @@
 plugins {
   id "java-library"
+  id "maven"
 }
 apply plugin: "net.ltgt.errorprone"
 apply from: "$rootDir/gradle/gwtTest.gradle"
+
+group = "org.gwtproject.event"
+version = "HEAD-SNAPSHOT"
 
 repositories {
   mavenCentral()
