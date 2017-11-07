@@ -27,7 +27,7 @@ import org.gwtproject.event.shared.Event.Type;
  * @see ResettableEventBus
  * @see org.gwtproject.event.shared.testing.CountingEventBus
  */
-public abstract class EventBus {
+public abstract class EventBus implements HasHandlers {
 
   /**
    * Invokes {@code event.dispatch} with {@code handler}.
@@ -87,6 +87,7 @@ public abstract class EventBus {
    * @throws UmbrellaException wrapping exceptions thrown by handlers
    * @param event the event to fire
    */
+  @Override
   public abstract void fireEvent(Event<?> event);
 
   /**

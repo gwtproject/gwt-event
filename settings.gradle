@@ -1,3 +1,4 @@
 rootProject.name = "gwt-events"
 
 include "compat"
+include "logical"
