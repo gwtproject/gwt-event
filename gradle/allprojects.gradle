@@ -41,4 +41,15 @@ allprojects {
   googleJavaFormat {
     toolVersion = "1.5"
   }
+
+  apply plugin: 'com.github.hierynomus.license'
+  license {
+    header = rootProject.file('LICENSE.header')
+    encoding = 'UTF-8'
+    skipExistingHeaders = true
+    mapping java: 'SLASHSTAR_STYLE'
+
+    ext.year = java.time.Year.now()
+    ext.name = 'The GWT Project Authors'
+  }
 }

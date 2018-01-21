@@ -29,5 +29,7 @@ task generateTestSources(type: Copy) {
   }
 }
 sourceSets.test.java.srcDirs files(generateTestSources.destinationDir).builtBy(generateTestSources)
+licenseTest.source fileTree('src/test/java-templates/')
+licenseFormatTest.source fileTree('src/test/java-templates/')
 
 generateGwtTestSources.ext.gwtTestModule = "org.gwtproject.event.compat.EventCompat"
