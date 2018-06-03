@@ -12,6 +12,11 @@ dependencies {
     testImplementation("junit:junit:4.12")
 }
 
+tasks.withType<Javadoc> {
+    // Workaround for https://github.com/gradle/gradle/issues/5630
+    (options as CoreJavadocOptions).addStringOption("sourcepath", "")
+}
+
 val javaTemplates = "src/test/java-templates/"
 val generateTestSources by tasks.creating(Copy::class) {
     into("$buildDir/generated-sources/java-templates/test/")
