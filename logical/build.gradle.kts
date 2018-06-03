@@ -1,7 +1,10 @@
 plugins {
     id("local.gwt-library")
     id("local.gwt-test")
+    id("local.maven-publish")
 }
+
+base.archivesBaseName = "gwt-logical-event"
 
 dependencies {
     api(project(":"))

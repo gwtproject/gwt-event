@@ -1,10 +1,5 @@
 rootProject.name = "gwt-event"
 
-include("compat")
-project(":compat").name = "gwt-event-compat"
+enableFeaturePreview("STABLE_PUBLISHING")
 
-include("logical")
-project(":logical").name = "gwt-logical-event"
-
-include("legacy")
-project(":legacy").name = "gwt-event-legacy"
+include(":compat", ":logical", ":legacy")

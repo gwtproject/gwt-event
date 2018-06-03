@@ -4,11 +4,15 @@ import java.time.Year
 plugins {
     id("local.gwt-library")
     id("local.gwt-test")
+    id("local.maven-publish")
 
     id("net.ltgt.errorprone") version "0.0.14"
     id("com.github.sherter.google-java-format") version "0.6"
     id("com.github.hierynomus.license") version "0.14.0"
 }
+
+group = "org.gwtproject.event"
+version = "HEAD-SNAPSHOT"
 
 dependencies {
     testImplementation("junit:junit:4.12")

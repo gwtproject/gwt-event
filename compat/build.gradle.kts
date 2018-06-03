@@ -3,7 +3,10 @@ import nl.javadude.gradle.plugins.license.License
 plugins {
     id("local.gwt-library")
     id("local.gwt-test")
+    id("local.maven-publish")
 }
+
+base.archivesBaseName = "gwt-event-compat"
 
 dependencies {
     api(project(":"))
