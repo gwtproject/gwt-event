@@ -1,8 +1,0 @@
-plugins {
-    id "java-library"
-    id "maven"
-}
-
-dependencies {
-    api project(":")
-}

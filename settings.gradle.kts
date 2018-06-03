@@ -1,10 +1,10 @@
 rootProject.name = "gwt-event"
 
-include "compat"
+include("compat")
 project(":compat").name = "gwt-event-compat"
 
-include "logical"
+include("logical")
 project(":logical").name = "gwt-logical-event"
 
-include "legacy"
+include("legacy")
 project(":legacy").name = "gwt-event-legacy"
