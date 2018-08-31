@@ -6,7 +6,7 @@ plugins {
     id("local.gwt-test")
     id("local.maven-publish")
 
-    id("net.ltgt.errorprone") version "0.0.14"
+    id("net.ltgt.errorprone-javacplugin") version "0.5"
     id("com.github.sherter.google-java-format") version "0.6"
     id("com.github.hierynomus.license") version "0.14.0"
 }
