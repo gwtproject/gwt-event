@@ -6,7 +6,7 @@ plugins {
     id("local.maven-publish")
 
     id("net.ltgt.errorprone") version "0.8"
-    id("com.github.sherter.google-java-format") version "0.8"
+    id("com.diffplug.gradle.spotless") version "3.23.0"
     id("com.github.hierynomus.license") version "0.15.0"
 }
 
@@ -42,26 +42,19 @@ repositories {
     jcenter()
 }
 
-val ktlint by configurations.creating
+allprojects {
+    apply(plugin = "com.diffplug.gradle.spotless")
 
-dependencies {
-    ktlint("com.github.shyiko:ktlint:0.27.0")
-}
-
-val verifyKtlint by tasks.creating(JavaExec::class) {
-    description = "Check Kotlin code style."
-    classpath = ktlint
-    main = "com.github.shyiko.ktlint.Main"
-    args("**/*.gradle.kts", "**/*.kt", "!**/build/**")
-}
-tasks["check"].dependsOn(verifyKtlint)
-
-task("ktlint", JavaExec::class) {
-    description = "Fix Kotlin code style violations."
-    classpath = verifyKtlint.classpath
-    main = verifyKtlint.main
-    args("-F")
-    args(verifyKtlint.args)
+    spotless {
+        kotlinGradle {
+            ktlint("0.32.0")
+        }
+        java {
+            // local.gwt-test generates sources, we only want to check sources
+            targetExclude(fileTree(buildDir) { include("**/*.java") })
+            googleJavaFormat("1.7")
+        }
+    }
 }
 
 /*
