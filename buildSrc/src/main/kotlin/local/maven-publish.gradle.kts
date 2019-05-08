@@ -1,6 +1,7 @@
 package local
 
 plugins {
+    `java-base`
     `maven-publish`
     signing
 }
@@ -12,12 +13,12 @@ if (project != rootProject) {
 
 val javadoc by tasks
 val javadocJar by tasks.creating(Jar::class) {
-    classifier = "javadoc"
+    archiveClassifier.set("javadoc")
     from(javadoc)
 }
 
 val sourcesJar by tasks.creating(Jar::class) {
-    classifier = "sources"
+    archiveClassifier.set("sources")
     from(sourceSets["main"].allSource)
 }
 
@@ -75,13 +76,3 @@ signing {
 
 inline val Project.isSnapshot
     get() = version.toString().endsWith("-SNAPSHOT")
-
-inline val Project.base: BasePluginConvention
-    get() = the()
-inline val Project.sourceSets: SourceSetContainer
-    get() = the()
-inline val Project.publishing: PublishingExtension
-    get() = the()
-
-fun Project.signing(configuration: SigningExtension.() -> Unit) =
-    configure(configuration)

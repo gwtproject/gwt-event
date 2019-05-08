@@ -2,8 +2,9 @@ package local
 
 plugins {
     `java-library`
-    id("net.ltgt.errorprone-javacplugin")
 }
+
+apply(plugin = "net.ltgt.errorprone")
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 if (JavaVersion.current().isJava9Compatible) {
@@ -15,29 +16,26 @@ repositories {
 }
 
 dependencies {
-    "errorprone"("com.google.errorprone:error_prone_core:2.3.1")
+    "errorprone"("com.google.errorprone:error_prone_core:2.3.3")
     "errorproneJavac"("com.google.errorprone:javac:9+181-r4173-1")
 }
 
 tasks {
-    "jar"(Jar::class) {
-        from(java.sourceSets["main"].allJava)
+    jar {
+        from(sourceSets["main"].allJava)
     }
 
-    "test"(Test::class) {
+    test {
         include("**/*Suite.class")
     }
 
-    "javadoc"(Javadoc::class) {
+    javadoc {
         options.encoding = "UTF-8"
         (options as CoreJavadocOptions).addBooleanOption("Xdoclint:all,-missing", true)
     }
 }
 
-tasks.withType<JavaCompile> {
+tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
     options.compilerArgs.addAll(listOf("-Werror", "-Xlint:all"))
 }
-
-val Project.java: JavaPluginConvention
-    get() = the()

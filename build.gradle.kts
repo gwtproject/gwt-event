@@ -1,4 +1,3 @@
-import nl.javadude.gradle.plugins.license.LicenseExtension
 import java.time.Year
 
 plugins {
@@ -6,9 +5,9 @@ plugins {
     id("local.gwt-test")
     id("local.maven-publish")
 
-    id("net.ltgt.errorprone-javacplugin") version "0.5"
-    id("com.github.sherter.google-java-format") version "0.7.1"
-    id("com.github.hierynomus.license") version "0.14.0"
+    id("net.ltgt.errorprone") version "0.8"
+    id("com.github.sherter.google-java-format") version "0.8"
+    id("com.github.hierynomus.license") version "0.15.0"
 }
 
 group = "org.gwtproject.event"
@@ -53,7 +52,7 @@ val verifyKtlint by tasks.creating(JavaExec::class) {
     description = "Check Kotlin code style."
     classpath = ktlint
     main = "com.github.shyiko.ktlint.Main"
-    args("**/*.gradle.kts", "**/*.kt")
+    args("**/*.gradle.kts", "**/*.kt", "!**/build/**")
 }
 tasks["check"].dependsOn(verifyKtlint)
 
@@ -64,8 +63,6 @@ task("ktlint", JavaExec::class) {
     args("-F")
     args(verifyKtlint.args)
 }
-
-fun Project.license(configuration: LicenseExtension.() -> Unit) = configure(configuration)
 
 /*
 configurations {
