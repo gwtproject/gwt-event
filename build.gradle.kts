@@ -34,7 +34,7 @@ allprojects {
         exclude("**/META-INF/**")
 
         (this as ExtensionAware).extra["year"] = Year.now()
-        (this as ExtensionAware).extra["name"] = "Thomas Broyer"
+        (this as ExtensionAware).extra["name"] = "The GWT Project Authors"
     }
 }
 
