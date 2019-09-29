@@ -5,8 +5,9 @@ plugins {
     id("local.gwt-test")
     id("local.maven-publish")
 
-    id("net.ltgt.errorprone") version "0.8"
-    id("com.diffplug.gradle.spotless") version "3.23.0"
+    id("net.ltgt.errorprone") version "0.8.1"
+    id("com.diffplug.gradle.spotless") version "3.24.3"
+    id("org.jlleitschuh.gradle.ktlint") version "8.2.0"
     id("com.github.hierynomus.license") version "0.15.0"
 }
 
@@ -44,16 +45,18 @@ repositories {
 
 allprojects {
     apply(plugin = "com.diffplug.gradle.spotless")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     spotless {
-        kotlinGradle {
-            ktlint("0.32.0")
-        }
         java {
             // local.gwt-test generates sources, we only want to check sources
             targetExclude(fileTree(buildDir) { include("**/*.java") })
             googleJavaFormat("1.7")
         }
+    }
+    ktlint {
+        version.set("0.34.2")
+        enableExperimentalRules.set(true)
     }
 }
 

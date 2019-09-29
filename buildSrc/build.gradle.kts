@@ -2,7 +2,7 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
 
-    id("com.diffplug.gradle.spotless") version "3.23.0"
+    id("org.jlleitschuh.gradle.ktlint") version "8.2.0"
 }
 repositories {
     jcenter()
@@ -11,15 +11,15 @@ kotlinDslPluginOptions {
     experimentalWarning.set(false)
 }
 
-spotless {
-    val ktlintVersion = "0.32.0"
-    kotlin {
-        // for some reason, spotless includes *.kts but won't lint them as scripts
-        targetExclude("**/*.kts")
-        ktlint(ktlintVersion)
+ktlint {
+    version.set("0.34.2")
+    enableExperimentalRules.set(true)
+    kotlinScriptAdditionalPaths {
+        include(fileTree("src/main/kotlin"))
     }
-    kotlinGradle {
-        target("*.gradle.kts", "src/main/kotlin/**/*.gradle.kts")
-        ktlint(ktlintVersion)
+    filter {
+        exclude() {
+            it.file in fileTree(buildDir)
+        }
     }
 }

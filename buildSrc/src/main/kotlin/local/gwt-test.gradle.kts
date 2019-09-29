@@ -14,7 +14,9 @@ val generateGwtTestSources by tasks.registering(Copy::class) {
         if (it == "import junit.framework.TestCase;") {
             "import com.google.gwt.junit.client.GWTTestCase;"
         } else {
-            it.replace("extends TestCase {", """extends GWTTestCase {
+            it.replace(
+                "extends TestCase {",
+                """extends GWTTestCase {
   @Override
   public String getModuleName() { return "${extension.moduleName.get()}"; }"""
             )

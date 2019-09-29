@@ -24,11 +24,15 @@ val sourcesJar by tasks.creating(Jar::class) {
 
 val sonatypeRepository = publishing.repositories.maven {
     name = "sonatype"
-    setUrl(provider {
-        if (isSnapshot)
-            uri("https://oss.sonatype.org/content/repositories/snapshots/") else
-            uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-    })
+    setUrl(
+        provider {
+            if (isSnapshot) {
+                uri("https://oss.sonatype.org/content/repositories/snapshots/")
+            } else {
+                uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            }
+        }
+    )
     credentials {
         username = project.findProperty("ossrhUsername") as? String
         password = project.findProperty("ossrhPassword") as? String
