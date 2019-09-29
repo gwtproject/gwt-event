@@ -8,7 +8,7 @@ val extension = extensions.create<GwtTestExtension>("gwtTest")
 val generateGwtTestSources by tasks.registering(Copy::class) {
     inputs.property("gwtTest.module", extension.moduleName)
 
-    from(sourceSets["test"].allJava.sourceDirectories)
+    from(sourceSets.test.map { it.allJava.sourceDirectories })
     into("$buildDir/generated-sources/gwtTest/")
     filter {
         if (it == "import junit.framework.TestCase;") {
@@ -33,9 +33,9 @@ sourceSets {
         java {
             srcDirs(generateGwtTestSources.map { it.destinationDir })
         }
-        compileClasspath += sourceSets["test"].compileClasspath
+        compileClasspath += sourceSets.test.get().compileClasspath
         runtimeClasspath += output + compileClasspath +
-            sourceSets["main"].allJava.sourceDirectories +
+            sourceSets.main.get().allJava.sourceDirectories +
             allJava.sourceDirectories
     }
 }

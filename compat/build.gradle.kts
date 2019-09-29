@@ -38,7 +38,13 @@ val generateTestSources by tasks.creating(Copy::class) {
         }
     }
 }
-sourceSets["test"].java.srcDirs(files(generateTestSources.destinationDir).builtBy(generateTestSources))
+sourceSets {
+    test {
+        java {
+            srcDirs(files(generateTestSources.destinationDir).builtBy(generateTestSources))
+        }
+    }
+}
 listOf("licenseTest", "licenseFormatTest").forEach {
     tasks.withType(License::class.java).getByName(it).source(fileTree(javaTemplates))
 }

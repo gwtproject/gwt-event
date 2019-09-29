@@ -1,7 +1,7 @@
 package local
 
 plugins {
-    `java-base`
+    java
     `maven-publish`
     signing
 }
@@ -19,7 +19,7 @@ val javadocJar by tasks.creating(Jar::class) {
 
 val sourcesJar by tasks.creating(Jar::class) {
     archiveClassifier.set("sources")
-    from(sourceSets["main"].allSource)
+    from(sourceSets.main.map { it.allSource })
 }
 
 val sonatypeRepository = publishing.repositories.maven {

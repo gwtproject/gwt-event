@@ -22,7 +22,7 @@ dependencies {
 
 tasks {
     jar {
-        from(sourceSets["main"].allJava)
+        from(sourceSets.main.map { it.allJava })
     }
 
     test {
