@@ -15,13 +15,13 @@ dependencies {
     testImplementation("junit:junit:4.12")
 }
 
-tasks.withType<Javadoc> {
+tasks.withType<Javadoc>().configureEach {
     // Workaround for https://github.com/gradle/gradle/issues/5630
     (options as CoreJavadocOptions).addStringOption("sourcepath", "")
 }
 
 val javaTemplates = "src/test/java-templates/"
-val generateTestSources by tasks.creating(Copy::class) {
+val generateTestSources by tasks.registering(Copy::class) {
     into("$buildDir/generated-sources/java-templates/test/")
     from(javaTemplates) {
         rename { it.replace("__variant__", "Bindery") }
@@ -41,12 +41,14 @@ val generateTestSources by tasks.creating(Copy::class) {
 sourceSets {
     test {
         java {
-            srcDirs(files(generateTestSources.destinationDir).builtBy(generateTestSources))
+            srcDirs(files(generateTestSources.map { it.destinationDir }))
         }
     }
 }
 listOf("licenseTest", "licenseFormatTest").forEach {
-    tasks.withType(License::class.java).getByName(it).source(fileTree(javaTemplates))
+    tasks.named<License>(it) {
+        source(fileTree(javaTemplates))
+    }
 }
 
 gwtTest {

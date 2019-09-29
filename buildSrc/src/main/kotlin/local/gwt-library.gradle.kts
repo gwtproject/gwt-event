@@ -8,7 +8,7 @@ apply(plugin = "net.ltgt.errorprone")
 
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 if (JavaVersion.current().isJava9Compatible) {
-    tasks.withType<JavaCompile> { options.compilerArgs.addAll(listOf("--release", java.targetCompatibility.majorVersion)) }
+    tasks.withType<JavaCompile>().configureEach { options.compilerArgs.addAll(listOf("--release", java.targetCompatibility.majorVersion)) }
 }
 
 repositories {
