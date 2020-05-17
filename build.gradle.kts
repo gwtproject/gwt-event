@@ -11,6 +11,24 @@ plugins {
     id("com.github.hierynomus.license") version "0.15.0"
 }
 
+buildscript {
+    dependencyLocking {
+        lockAllConfigurations()
+        lockMode.set(LockMode.STRICT)
+    }
+}
+allprojects {
+    dependencyLocking {
+        lockAllConfigurations()
+        lockMode.set(LockMode.STRICT)
+    }
+}
+tasks {
+    register("allDependencies") {
+        dependsOn("dependencies", subprojects.map { ":${it.name}:dependencies" })
+    }
+}
+
 group = "org.gwtproject.event"
 version = "HEAD-SNAPSHOT"
 

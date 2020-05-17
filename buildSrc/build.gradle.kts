@@ -4,6 +4,14 @@ plugins {
 
     id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
 }
+buildscript {
+    dependencyLocking {
+        lockAllConfigurations()
+    }
+}
+dependencyLocking {
+    lockAllConfigurations()
+}
 repositories {
     jcenter()
 }
