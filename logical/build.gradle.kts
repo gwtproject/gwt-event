@@ -9,10 +9,10 @@ base.archivesBaseName = "gwt-logical-event"
 dependencies {
     api(project(":"))
 
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13")
 }
 
 gwtTest {
     moduleName.set("org.gwtproject.event.logical.LogicalEvent")
-    gwtVersion.set("2.8.2")
+    gwtVersion.set("2.9.0")
 }

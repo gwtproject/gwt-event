@@ -5,9 +5,9 @@ plugins {
     id("local.gwt-test")
     id("local.maven-publish")
 
-    id("net.ltgt.errorprone") version "0.8.1"
-    id("com.diffplug.gradle.spotless") version "3.24.3"
-    id("org.jlleitschuh.gradle.ktlint") version "8.2.0"
+    id("net.ltgt.errorprone") version "1.1.1"
+    id("com.diffplug.gradle.spotless") version "3.30.0"
+    id("org.jlleitschuh.gradle.ktlint") version "9.2.1"
     id("com.github.hierynomus.license") version "0.15.0"
 }
 
@@ -15,12 +15,12 @@ group = "org.gwtproject.event"
 version = "HEAD-SNAPSHOT"
 
 dependencies {
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13")
 }
 
 gwtTest {
     moduleName.set("org.gwtproject.event.Event")
-    gwtVersion.set("2.8.2")
+    gwtVersion.set("2.9.0")
 }
 
 // Code style
@@ -55,7 +55,7 @@ allprojects {
         }
     }
     ktlint {
-        version.set("0.34.2")
+        version.set("0.36.0")
         enableExperimentalRules.set(true)
     }
 }

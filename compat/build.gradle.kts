@@ -10,9 +10,9 @@ base.archivesBaseName = "gwt-event-compat"
 
 dependencies {
     api(project(":"))
-    api("com.google.gwt:gwt-user:2.8.2")
+    api("com.google.gwt:gwt-user:2.9.0")
 
-    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.13")
 }
 
 tasks.withType<Javadoc>().configureEach {
@@ -53,5 +53,5 @@ listOf("licenseTest", "licenseFormatTest").forEach {
 
 gwtTest {
     moduleName.set("org.gwtproject.event.compat.EventCompat")
-    gwtVersion.set("2.8.2")
+    gwtVersion.set("2.9.0")
 }
