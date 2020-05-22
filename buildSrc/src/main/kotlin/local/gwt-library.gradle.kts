@@ -32,6 +32,9 @@ tasks {
     javadoc {
         options.encoding = "UTF-8"
         (options as CoreJavadocOptions).addBooleanOption("Xdoclint:all,-missing", true)
+        if (JavaVersion.current().isJava9Compatible) {
+            (options as CoreJavadocOptions).addBooleanOption("html5", true)
+        }
     }
 }
 
