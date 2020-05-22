@@ -30,7 +30,6 @@ tasks {
 }
 
 group = "org.gwtproject.event"
-version = "HEAD-SNAPSHOT"
 
 dependencies {
     testImplementation("junit:junit:4.13")
