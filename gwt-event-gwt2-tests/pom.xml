@@ -9,7 +9,6 @@
     <version>${revision}</version>
   </parent>
   <artifactId>gwt-event-gwt2-tests</artifactId>
-  <packaging>gwt-lib</packaging>
 
   <name>GWT Event GWT 2 Tests</name>
   <description>Test cases for the GWT 2 tests</description>
@@ -47,7 +46,6 @@
         <extensions>true</extensions>
         <configuration>
           <failOnError>true</failOnError>
-          <moduleName>org.gwtproject.event.shared.EventSharedSuite</moduleName>
         </configuration>
       </plugin>
       <plugin>

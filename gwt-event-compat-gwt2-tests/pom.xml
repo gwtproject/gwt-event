@@ -9,7 +9,6 @@
     <version>${revision}</version>
   </parent>
   <artifactId>gwt-event-compat-gwt2-tests</artifactId>
-  <packaging>gwt-lib</packaging>
 
   <name>GWT Compat Event GWT 2 Tests</name>
   <description>Test cases for the GWT 2 tests</description>
@@ -50,7 +49,6 @@
         <extensions>true</extensions>
         <configuration>
           <failOnError>true</failOnError>
-          <moduleName>org.gwtproject.event.compat.shared.EventCompatSuite</moduleName>
         </configuration>
       </plugin>
       <plugin>
