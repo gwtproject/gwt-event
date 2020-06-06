@@ -1,5 +1,5 @@
-GWT Events
-==========
+GWT Event
+=========
 
 ![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg)  [![License](https://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Chat on Gitter](https://badges.gitter.im/hal/elemento.svg)](https://gitter.im/gwtproject/gwt-modules) ![CI](https://github.com/gwtproject/gwt-events/workflows/CI/badge.svg)
 
@@ -178,3 +178,27 @@ and then refactor your code from `GwtEvent` to `Event`).
    import org.gwtproject.event.legacy.shared.EventHandler;
    import org.gwtproject.event.legacy.shared.GwtEvent;
    ```
+
+## Instructions
+
+To build gwt-event:
+
+* run `mvn clean install`
+
+on the parent directory.
+
+To run the j2cl tests:
+
+* switch to the 'gwt-timer-j2cl-tests' directory
+* run `mvn j2cl:clean` & `mvn j2cl:test`
+
+**Note: To build the module you need Maven 3.6.3 or newer**
+
+## System Requirements
+
+**GWT Event requires GWT 2.9.0 or newer!**
+
+
+## Dependencies
+
+GWT Event does not depend on any other module.
