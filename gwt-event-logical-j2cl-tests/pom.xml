@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.gwtproject.event</groupId>
     <artifactId>gwt-event-parent</artifactId>
-    <version>HEAD-SNAPSHOT</version>
+    <version>${revision}</version>
   </parent>
   <artifactId>gwt-event-logical-j2cl-tests</artifactId>
 
@@ -15,19 +15,11 @@
   <url>https://github.com/gwtproject/gwt-event</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-
-    <maven.j2cl.plugin>0.13-SNAPSHOT</maven.j2cl.plugin>
-    <maven.licence.plugin>3.0</maven.licence.plugin>
-    <maven.surfire.plugin>3.0.0-M1</maven.surfire.plugin>
+    <maven.j2cl.plugin>0.15-SNAPSHOT</maven.j2cl.plugin>
 
     <!-- CI -->
     <vertispan.j2cl.repo.url>https://repo.vertispan.com/j2cl/</vertispan.j2cl.repo.url>
 
-    <elemental2.version>1.0.0-RC1</elemental2.version>
     <j2cl.version>0.7-SNAPSHOT</j2cl.version>
   </properties>
 
@@ -38,19 +30,6 @@
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
-    <!-- transitive dependencies that aren't correctly available at runtime -->
-    <!--    <dependency>-->
-    <!--      <groupId>com.google.elemental2</groupId>-->
-    <!--      <artifactId>elemental2-promise</artifactId>-->
-    <!--      <version>${elemental2.version}</version>-->
-    <!--      <scope>test</scope>-->
-    <!--    </dependency>-->
-    <!--    <dependency>-->
-    <!--      <groupId>com.google.elemental2</groupId>-->
-    <!--      <artifactId>elemental2-dom</artifactId>-->
-    <!--      <version>${elemental2.version}</version>-->
-    <!--      <scope>test</scope>-->
-    <!--    </dependency>-->
 
     <!-- test dependencies -->
     <dependency>
@@ -79,19 +58,20 @@
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
+        <version>${maven.license.plugin}</version>
       </plugin>
       <plugin>
         <groupId>com.vertispan.j2cl</groupId>
         <artifactId>j2cl-maven-plugin</artifactId>
         <version>${maven.j2cl.plugin}</version>
         <configuration>
-          <!-- TODO: as long as ADVANCED compilationLevel will remove Assertions, we stay with BUNDLE -->
           <compilationLevel>ADVANCED</compilationLevel>
-          <!--                          <compilationLevel>BUNDLE</compilationLevel>-->
+          <testJsZip>com.vertispan.j2cl:closure-test:zip:jszip:0.7-20200424.004055-5</testJsZip>
         </configuration>
         <executions>
           <execution>
             <id>j2cl-test</id>
+            <phase>test</phase>
             <goals>
               <goal>test</goal>
             </goals>
@@ -104,6 +84,22 @@
         <version>${maven.surfire.plugin}</version>
         <configuration>
           <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>${maven.install.plugin}</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>${maven.deploy.plugin}</version>
+        <configuration>
+          <skip>true</skip>
         </configuration>
       </plugin>
     </plugins>
