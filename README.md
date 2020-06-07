@@ -183,9 +183,9 @@ and then refactor your code from `GwtEvent` to `Event`).
 
 To build gwt-event:
 
-* run `mvn clean install`
+* run `mvn clean verify`
 
-on the parent directory.
+on the parent directory. This will build the artifact and run tests against the JVM, J2CL, and GWT2.
 
 **Note: To build the module you need Maven 3.6.3 or newer**
 
