@@ -1,5 +1,7 @@
-GWT Events
-==========
+GWT Event
+=========
+
+![GWT3/J2CL compatible](https://img.shields.io/badge/GWT3/J2CL-compatible-brightgreen.svg)  [![License](https://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html) [![Chat on Gitter](https://badges.gitter.im/hal/elemento.svg)](https://gitter.im/gwtproject/gwt-modules) ![CI](https://github.com/gwtproject/gwt-events/workflows/CI/badge.svg)
 
 A future-proof port of the `com.google.web.bindery.event.Event` GWT module,
 with no dependency on `gwt-user` (besides the Java Runtime Emulation),
@@ -176,3 +178,20 @@ and then refactor your code from `GwtEvent` to `Event`).
    import org.gwtproject.event.legacy.shared.EventHandler;
    import org.gwtproject.event.legacy.shared.GwtEvent;
    ```
+
+## Instructions
+
+To build gwt-event:
+
+* run `mvn clean verify`
+
+on the parent directory. This will build the artifact and run tests against the JVM, J2CL, and GWT2.
+
+## System Requirements
+
+**GWT Event requires GWT 2.9.0 or newer!**
+
+
+## Dependencies
+
+GWT Event does not depend on any other module.
