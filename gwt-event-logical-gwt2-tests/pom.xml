@@ -23,9 +23,10 @@
   <parent>
     <groupId>org.gwtproject.event</groupId>
     <artifactId>gwt-event-parent</artifactId>
-    <version>${revision}</version>
+    <version>dev</version>
   </parent>
   <artifactId>gwt-event-logical-gwt2-tests</artifactId>
+  <version>${revision}</version>
 
   <name>GWT Logical Event GWT 2 Tests</name>
   <description>Test cases for the GWT 2 tests</description>
@@ -41,6 +42,19 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-dev</artifactId>
+      <version>${gwt.version}</version>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.gwtproject.event</groupId>
       <artifactId>gwt-event-logical</artifactId>

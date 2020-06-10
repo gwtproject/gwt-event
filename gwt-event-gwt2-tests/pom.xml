@@ -23,28 +23,39 @@
   <parent>
     <groupId>org.gwtproject.event</groupId>
     <artifactId>gwt-event-parent</artifactId>
-    <version>${revision}</version>
+    <version>dev</version>
   </parent>
   <artifactId>gwt-event-gwt2-tests</artifactId>
+  <version>${revision}</version>
 
   <name>GWT Event GWT 2 Tests</name>
   <description>Test cases for the GWT 2 tests</description>
 
-  <properties>
-    <maven.gwt.plugin>1.0.0</maven.gwt.plugin>
-
-    <!-- CI -->
-    <vertispan.j2cl.repo.url>https://repo.vertispan.com/j2cl/</vertispan.j2cl.repo.url>
-    <google.snapshot.repo.url>https://oss.sonatype.org/content/repositories/google-snapshots/</google.snapshot.repo.url>
-
-    <junit.version>4.12</junit.version>
-  </properties>
-
   <dependencies>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-dev</artifactId>
+      <version>${gwt.version}</version>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Internal dependencies -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>gwt-event</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

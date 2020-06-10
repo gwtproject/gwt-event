@@ -23,23 +23,13 @@
   <parent>
     <groupId>org.gwtproject.event</groupId>
     <artifactId>gwt-event-parent</artifactId>
-    <version>${revision}</version>
+    <version>dev</version>
   </parent>
   <artifactId>gwt-event-compat-gwt2-tests</artifactId>
+  <version>${revision}</version>
 
   <name>GWT Compat Event GWT 2 Tests</name>
   <description>Test cases for the GWT 2 tests</description>
-
-  <properties>
-    <maven.gwt.plugin>1.0.0</maven.gwt.plugin>
-
-    <!-- CI -->
-    <vertispan.j2cl.repo.url>https://repo.vertispan.com/j2cl/</vertispan.j2cl.repo.url>
-    <google.snapshot.repo.url>https://oss.sonatype.org/content/repositories/google-snapshots/</google.snapshot.repo.url>
-
-    <gwt.version>2.9.0</gwt.version>
-    <junit.version>4.12</junit.version>
-  </properties>
 
   <dependencies>
     <dependency>

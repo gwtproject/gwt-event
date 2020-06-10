@@ -23,22 +23,14 @@
   <parent>
     <groupId>org.gwtproject.event</groupId>
     <artifactId>gwt-event-parent</artifactId>
-    <version>${revision}</version>
+    <version>dev</version>
   </parent>
   <artifactId>gwt-event-logical-j2cl-tests</artifactId>
+  <version>${revision}</version>
 
   <name>GWT Logical Event J2CL Tests</name>
   <description>Test cases for the J2Cl tests</description>
   <url>https://github.com/gwtproject/gwt-event</url>
-
-  <properties>
-    <maven.j2cl.plugin>0.15-SNAPSHOT</maven.j2cl.plugin>
-
-    <!-- CI -->
-    <vertispan.j2cl.repo.url>https://repo.vertispan.com/j2cl/</vertispan.j2cl.repo.url>
-
-    <j2cl.version>0.7-SNAPSHOT</j2cl.version>
-  </properties>
 
   <dependencies>
     <dependency>
@@ -66,6 +58,12 @@
       <groupId>com.vertispan.j2cl</groupId>
       <artifactId>junit-emul</artifactId>
       <version>${j2cl.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.gwtproject.event</groupId>
+      <artifactId>gwt-event</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
