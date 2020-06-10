@@ -89,7 +89,6 @@
     <maven.gwt.plugin>1.0.0</maven.gwt.plugin>
     <maven.javadoc.plugin>3.2.0</maven.javadoc.plugin>
     <maven.j2cl.plugin>0.15-SNAPSHOT</maven.j2cl.plugin>
-    <maven.install.plugin>3.0.0-M1</maven.install.plugin>
     <maven.license.plugin>3.0</maven.license.plugin>
     <maven.source.plugin>3.2.1</maven.source.plugin>
     <maven.surfire.plugin>3.0.0-M1</maven.surfire.plugin>
