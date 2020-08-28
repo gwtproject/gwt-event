@@ -89,11 +89,11 @@ dependencies {
 task transpile(type: JavaExec) {
   inputs.files configurations.j2cl
   inputs.files sourceSets.main.allJava
-  outputs.file "${buildDir}/libs/gwt-events.js.zip"
+  outputs.file "${buildDir}/libs/gwt-event.js.zip"
 
   main = 'com.google.j2cl.transpiler.J2clTranspiler'
   classpath = configurations.j2cl_transpiler
-  args = [ "-cp", configurations.j2cl.asPath, "-d", "${buildDir}/libs/gwt-events.js.zip" ] \
+  args = [ "-cp", configurations.j2cl.asPath, "-d", "${buildDir}/libs/gwt-event.js.zip" ] \
        + sourceSets.main.allJava
 }
 assemble.dependsOn transpile

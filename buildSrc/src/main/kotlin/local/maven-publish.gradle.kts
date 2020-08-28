@@ -44,7 +44,7 @@ val mavenPublication = publishing.publications.create<MavenPublication>("maven")
     pom {
         name.set(provider { "$groupId:$artifactId" })
         description.set(provider { project.description ?: name.get() })
-        url.set("https://github.com/gwtproject/gwt-events")
+        url.set("https://github.com/gwtproject/gwt-event")
         developers {
             developer {
                 name.set("The GWT Project Authors")
@@ -52,9 +52,9 @@ val mavenPublication = publishing.publications.create<MavenPublication>("maven")
             }
         }
         scm {
-            connection.set("https://github.com/gwtproject/gwt-events.git")
-            developerConnection.set("scm:git:ssh://github.com:gwtproject/gwt-events.git")
-            url.set("https://github.com/gwtproject/gwt-events")
+            connection.set("https://github.com/gwtproject/gwt-event.git")
+            developerConnection.set("scm:git:ssh://github.com:gwtproject/gwt-event.git")
+            url.set("https://github.com/gwtproject/gwt-event")
         }
         licenses {
             license {

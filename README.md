@@ -1,5 +1,5 @@
-GWT Events
-==========
+GWT Event
+=========
 
 A future-proof port of the `com.google.web.bindery.event.Event` GWT module,
 with no dependency on `gwt-user` (besides the Java Runtime Emulation),
